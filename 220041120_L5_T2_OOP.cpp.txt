@@ -1,0 +1,146 @@
+﻿#include<iostream>
+#include<string>
+#include<algorithm>
+
+
+
+
+using namespace std;
+class Employee
+{
+private:
+    string name;
+    string dob;
+    double salary;
+
+
+public:
+    Employee():name("Noshin Syara"),dob(22/10/2024),salary(24569.89) {}
+
+
+    string getname()
+    {
+        return name;
+    }
+    string getdob()
+    {
+        return dob;
+    }
+    double getSalary()
+    {
+        return salary;
+    }
+
+
+    void setName(string &empName)
+    {
+        if(empName.length>2)
+        {
+            name=empName;
+        }
+        else
+        {
+            cout<<"The name is too short, give a 2 word name"<<endl;
+
+
+        }
+
+
+    }
+    void setdob(string &empdob)
+    {
+        int  birth_year;
+        if(2024-birth_year>=18)
+        {
+            dob=empdob;
+        }
+        else
+        {
+            dob="01/01/2002";
+        }
+    }
+
+
+    void setSalary(double empSalary)
+    {
+        if(empSalary>=10000.00 &  empSalary<=10000.0)
+        {
+            salary=empSalary;
+        }
+        else
+        {
+            salary=1000.0;
+        }
+    }
+    void setInfo()
+    {
+        string empName,empdob;
+        double empsalary;
+
+
+        cout<<"Enter employee name: "<<endl;
+        getline(cin,empName);
+        setName(empName);
+
+
+        cout<<"Enter employee date of birth : "<<endl;
+        getline(cin,empdob);
+        setName(empdob);
+
+
+        cout<<"Enter employee salary : "<<endl;
+        cin>>empsalary;
+        setSalary(empSalary);
+
+
+        cin.ignore();
+    }
+
+
+    void getInfo()
+    {
+        cout<<"Employee Name :"<<getname()<<endl;
+        cout<<"Employee Date of birthday :"<<getdob()<<endl;
+        cout<<"Employee Salary:"<<getSalary()<<endl;
+    }
+
+
+    Employee compareAge(Employee &e)
+    {
+        int present_year=stoi(6,4);  //stoi: converts a string to an integer
+        int other_year=stoi(e.getdob(6,4));
+        return (present_year<other_year) ? *this:e;
+    }
+};
+
+
+int main()
+{
+    Employee e1,e2;
+
+
+    cout<<"Enter information for Employee 1 :";
+    e1.setInfo();
+    cout<<endl;
+
+
+    cout<<"Enter information for Employee 2 :";
+    e2.setInfo();
+    cout<<endl;
+
+
+    cout<<"Information for Employee 1 :";
+    e1.getInfo();
+    cout<<endl;
+
+
+    cout<<"Information for Employee 2  :";
+    e2.getInfo();
+    cout<<endl;
+
+
+    Employee elder=e1.compareAge(e2);
+    cout<<"The elder employee : "<<endl;
+    elder.getInfo();
+    return 0;
+};

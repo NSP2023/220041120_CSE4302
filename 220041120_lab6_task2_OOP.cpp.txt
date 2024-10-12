@@ -1,0 +1,90 @@
+﻿#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+
+
+class Counter
+{
+private:
+    int count;
+    int increment_step; //increment koybar hocche, setar steps count korbe
+
+
+public:
+    Counter(int step_value=1 ) //Counter constructor
+    {
+        if(step_value<0)
+        {
+            increment_step=1;
+            return ;
+        }
+
+
+        else
+        {
+            increment_step=step_value;
+        }
+        count=0;
+    };
+
+
+
+
+    void set_increment(int step_value) //set increment er constructor, ki increment korbe seta set korbe
+    {
+        if(count!=0)
+        {
+            cout<<"Count is not zero"<<endl;
+            return ;
+        }
+        if (step_value>=0)
+        {
+            increment_step=step_value;
+        }
+        else
+        {
+            cout<<"The input is negative"<<endl;
+        }
+    }
+
+
+    int getCount() const   // count number janar constructor
+    {
+        return count ;
+    }
+
+
+    void increment() //increase korar constructor
+    {
+        count+=increment_step;
+    }
+
+
+    void reset_count(int step=1) //reset korbe counter ke , ar bolbe je      bar increment kora hoichilo
+    {
+        count=0;
+        increment_step=step;
+    }
+};
+
+
+
+
+int main()
+{
+    Counter c1,c2,c3;
+    c1.setIncrementStep(2);
+    c1.increment();
+
+
+    cout<<"c1 count:"<< c1.getCount()<<endl;            // Pre-increment
+    ++c2;
+    cout<<"c2 count after pre-increment: "<<c2.getCount()<< endl;
+
+
+
+
+    return 0;
+}

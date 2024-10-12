@@ -1,0 +1,153 @@
+﻿#include<iostream>
+#include<string>
+#include<algorithm>
+
+
+using namespace std;
+class Celsius
+{
+private:
+    float tem;
+public:
+    Celsius(float temp=0.0)
+    {
+        set_temp(temp);
+    }
+
+
+    void set_temp(float temp)
+    {
+        if(temp>=-273.15)
+        {
+            tem=temp; //private e tem ache, private theke ber kore anar jonno ei constructor
+        }
+        else
+        {
+            cout<<"Invalid Temp, this is the absolute temp"<<endl;
+            tem=-273.15;
+
+
+        }
+    }
+
+
+    void display() const  //display ta constant thakar jonno, jate sobsomoy temp er je man ache tai print kore
+    {
+
+
+        cout<<"The temperature is "<<temp<<endl;
+    }
+
+
+
+
+    operator class Farenheit ();  //convertion korte hobe ei class diye,operator er kaj korar jonno dorkar
+    operator class Kelvin();
+};
+
+
+class Farenheit
+{
+private:
+    float temp;
+public:
+    Farenheit(float tem=32.0)
+    {
+        set_temp(tem);
+    }
+
+
+
+
+    void set_temp(float tem)
+    {
+        if(temp>=-459.67)
+        {
+            temp=tem;
+        }
+        else
+        {
+            cout<<"Temperature is lower than zero, not acceptble"<<endl;
+        }
+
+
+    }
+
+
+
+
+    void display() const
+    {
+        cout<<"The temperature is :"<<temp<<endl;
+    }
+};
+operator Celsius()
+{
+    return Celsius((temp-32)*5.0/9.0);
+}
+operator class Kelvin();
+{
+    return Kelvin(((temp-32)*5.0/9.0)+273.15);
+}
+
+
+class Kelvin
+{
+private:
+    float temp;
+public:
+    Kelvin(float tem=273.15)
+    {
+        set_temp(tem);
+    }
+    void set_temp(float tem)
+    {
+        if(tem>=0.0)
+        {
+            temp=tem;
+        }
+        else
+        {
+            cout<<"Temperature limit too low"<<endl;
+            temp=0.0;
+        }
+    }
+    void display() const
+    {
+        cout<<"The temperature is :"<<temp<<endl;
+    }
+    operator Celsius()
+    {
+        return Celsius(temp-273.15);
+    }
+
+
+    operator Farenheit()
+    {
+        return Farenheit(temperature*9.0/5.0+32)
+    }
+
+
+
+
+};
+
+
+int main()
+{
+    float temp;
+    cin>>temp;
+    Celsius C(temp);
+    C.display();
+
+
+    Farenheit F(temp);
+    F.display();
+
+
+    Kelvin K(temp);
+    K.display();
+
+
+    return 0;
+}

@@ -1,0 +1,152 @@
+﻿#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+
+
+using namespace std;
+
+
+class SavingsAccount()
+{
+private:
+    string Acc_Name;
+    string Acc_holder_name;
+    string address;
+    double interest;
+    double current_balance;
+    double mini_balance;
+
+
+public:
+    SavingsAccount(): interest(2.0),current_balance(1000.0),mini_balance(1000.0) {}
+
+
+    void SetACC_name()(const string &name)
+    {
+        Acc_Name=name;
+    }
+    string getAcc_name()  const
+    {
+        return Acc_Name;
+    }
+
+
+    void setACC_holder_name(const string &holder_name)
+    {
+        Acc_holder_name=holder_name;
+    }
+    string getaddress() const
+    {
+        return address;
+
+
+    }
+    void set_Interest(double rate)
+    {
+        if(rate>=2.0 && rate<=5.0)
+        {
+            interest=rate;
+        }
+
+
+    }
+    double get_Interest() const
+    {
+        return interest;
+    }
+
+
+    void set_balance(double balance)
+    {
+        if(balance>=1000.0 && balance<=50000.0)
+        {
+            current_balance;
+            if(balance<mini_balance)
+            {
+                mini_balance=balance;
+
+
+            }
+
+
+        }
+    }
+    double getCurrent_balance() const
+    {
+        return current_balance;
+    }
+
+
+    void deposit(double amount)
+    {
+        if(amount>0)
+        {
+            current_balance+=amount;
+            mini_balance=current_balance;
+        }
+
+
+    }
+}
+void withdraw(double amount)
+{
+    if(amount>0 && amount<=current_balance)
+    {
+        current_balance-=amount;
+        if(current_balance<mini_balance)
+        {
+            mini_balance=current_balance;
+        }
+
+
+    }
+    else
+    {
+        cout<<"Invalid amount"<<endl;
+    }
+
+
+    double calc_interest(int month)
+    {
+        double monthly_interest=interest/12.0/100.0;
+        return mini_balance*monthly_interest*month;
+    }
+
+
+    void display() const
+    {
+        cout<<"Account name: "<<Acc_Name<<endl;
+        cout<<"Account holder name: "<<Acc_holder_name<<endl;
+        cout<<"Address : "<<address<<endl;
+        cout<<"Annual Interest Rate: "<<interest<<endl;
+        cout<<"Current : "<<current_balance<<endl;
+        cout<<"Minimum Balance: "<<mini_balance<<endl;
+    }
+};
+int main()
+{
+    srand(time(0));
+    const int SIZE=100;
+    SavingsAccount account[SIZE];
+    cout<<"Edit the first two account"<<endl;
+    for(int i=2; i=SIZE; i++)
+    {
+
+
+    }
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+};
