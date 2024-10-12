@@ -1,0 +1,123 @@
+﻿#include<iostream>
+#include<string.h>
+using namespace std;
+class time
+{
+
+
+private:
+    int hour,second, minute;
+
+
+public:
+    time():hour(0),minute(0),second(0) {}
+
+
+    int hours()
+    {
+        return hour;
+    }
+
+
+    int minutes()
+    {
+        return minute;
+    }
+
+
+    int seconds()
+    {
+        return second;
+    }
+
+
+    void reset(int h, int m, int s)
+    {
+        hour=h%24;
+        minute=m%60;
+        second=s%60;
+    }
+    void update(int h, int m, int s)
+    {
+        second+=s;
+        minute+=second/60;
+        second%=60;
+
+
+        minute+=m;
+        hour+=minute/60;
+        minute%=60;
+
+
+        hour+=h;
+        hour%=24;
+
+
+    }
+
+
+    void print()
+    {
+        cout<<"Current time: "<<endl;
+        cout<<"Hour: "<<hour<<endl;
+        cout<<"Minute: "<<minute<<endl;
+        cout<<"Second: "<<hour<<endl;
+    }
+
+
+
+
+};
+int main()
+{
+    int h,m,s,op;
+    cout<<"1.For reset"<<endl;
+    cout<<"2.For update"<<endl;
+    cout<<"3.For hour"<<endl;
+    cout<<"4.For minute"<<endl;
+    cout<<"5.For second";
+    cin>>op;
+    time t;
+
+
+
+
+
+
+    if (op==1)
+    {
+        t.reset(h,m,s);
+        t.print();
+    }
+    else if (op==2)
+    {
+        cout<<"Enter hour, minute, second : "<<endl;
+
+
+        cin>>h,
+        cin>>m;
+        cin>>s;
+        t.update(h,m,s);
+        t.print();
+    }
+    else if(op==3)
+    {
+        t.hours();
+        t.print();
+    }
+    else if(op==4)
+    {
+        t.minutes();
+        t.print();
+    }
+    else if (op==5)
+    {
+        t.seconds();
+        t.print();
+    }
+    else
+    {
+        printf("Invalid Choice");
+    }
+    return 0;
+}

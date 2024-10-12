@@ -1,0 +1,63 @@
+﻿#include <iostream>
+
+
+class Counter
+{
+private:
+    int count;
+    int incrementStep;
+
+
+public:
+
+
+    Counter(int step=1)
+    {
+        count = 0;
+        incrementStep=step;
+    }
+
+
+    void setIncrementStep(int step)
+    {
+        incrementStep=step;
+    }
+
+
+    int getCount() const
+    {
+        return count;
+    }
+
+
+
+
+    void increment()
+    {
+        count+=incrementStep;
+    }
+
+
+
+
+    void resetCount()
+    {
+        count = 0;
+    }
+};
+
+
+int main()
+{
+    Counter c;
+    c.setIncrementStep(5);
+    c.increment();
+    std::cout<<"Count: "<<c.getCount()<<std::endl;
+    c.increment();
+    std::cout<<"Count: " <<c.getCount()<<std::endl;
+    c.resetCount();
+    std::cout<<"Count: " <<c.getCount()<<std::endl;
+
+
+    return 0;
+}

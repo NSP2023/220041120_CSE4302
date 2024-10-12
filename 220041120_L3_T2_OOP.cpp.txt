@@ -1,0 +1,106 @@
+﻿#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Temperature {
+private:
+    float  value; 
+   string unit;      //  unit store korbe- "Celsius", "Fahrenheit", "Kelvin"
+
+
+    bool isValid(double temp, string& u) {  //absolute temperature  ki na ta  detect korbe
+        if (u=="Celsius" && temp < -273.15) return false;
+        if (u=="Fahrenheit" && temp < -459.67) return false;
+        if (u=="Kelvin" && temp < 0) return false;
+        return true;
+    }
+
+
+   float celsiusToFahrenheit(float c) {
+ return (c * 9.0 / 5.0) + 32.0;
+ }
+
+
+  float  fahrenheitToCelsius(float f) { 
+return (f - 32.0) * 5.0 / 9.0;
+ }
+
+
+    float  celsiusToKelvin(float c) { 
+return c + 273.15;
+ }
+    float  kelvinToCelsius(float k) { 
+return k - 273.15; 
+}
+
+
+public:
+
+
+    void assign(float temp, const string& u) {
+        if (u=="Celsius" || u=="Fahrenheit" || u=="Kelvin") {
+            if (isValid(temp, u)) {
+                value = temp;
+                unit = u;
+            } else {
+               cerr <<"Error: Temperature cannot be below absolute zero!" <<endl;
+            }
+        } else {
+            cerr<<"Error: Invalid unit! Use Celsius, Fahrenheit, or Kelvin." <<endl;
+        }
+    }
+
+
+float convert(string& targetUnit) {
+        float tempInCelsius;
+
+
+          if (unit == "Celsius") {
+            tempInCelsius = value;
+        } else if (unit == "Fahrenheit") {
+            tempInCelsius = fahrenheitToCelsius(value);
+        } else { 
+            tempInCelsius = kelvinToCelsius(value);
+        }
+
+
+    
+        if (targetUnit == "Celsius") {
+            return tempInCelsius;
+        } else if (targetUnit == "Fahrenheit") {
+            return celsiusToFahrenheit(tempInCelsius);
+        } else if (targetUnit==”Kelvin") {
+            return celsiusToKelvin(tempInCelsius);
+        } else {
+            cout << "Error: Invalid target unit!" <<endl;
+            return value;          }
+    }
+
+
+     void print()  {
+        cout << "The temperature is " << fixed << setprecision(2)<< value << " " << unit << "." <<endl;
+    }
+};
+
+
+int main() {
+    Temperature temp;
+float a;
+cin>>a;
+
+
+      temp.assign(a, "Celsius");
+     temp.print();
+     cout << "Converted to Fahrenheit: " << temp.convert("Fahrenheit") << " °F" << endl; 
+
+
+    temp.assign(a, "Fahrenheit");
+    temp.print(); 
+    cout << "Converted to Kelvin: " << temp.convert("Kelvin") << " K" <<endl;
+
+
+    temp.assign(a, "Celsius"); 
+temp.print();
+    return 0;
+}
